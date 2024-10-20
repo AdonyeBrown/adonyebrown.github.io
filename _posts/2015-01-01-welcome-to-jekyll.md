@@ -1,9 +1,9 @@
 ---
 layout: post
-title: Welcome to Jekyll!
+title: Welcome to Rusbrown Tech Hub
 subtitle: A awesome static site generator.
-author: Jeffrey
-categories: jekyll
+author: Adonye Brown
+categories: Computer Vision
 banner:
   video: https://vjs.zencdn.net/v/oceans.mp4
   loop: true
