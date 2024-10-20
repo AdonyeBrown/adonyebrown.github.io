@@ -5,6 +5,18 @@ subtitle: Obect Detection
 category: [Features, infrastructure]
 tags: [python, Detectron2_demo, MLlib]
 ---
+##Detectron 2 for Object Detection
+
+## Introduction
+Detectron 2 is an open-source library developed by Facebook AI Research (FAIR) for object detection and segmentation[_{{{CITATION{{{_1{Ultimate Guide to Detectron2: Mastering Object Detection and ... - Ikomia](https://www.ikomia.ai/blog/comprehensive-guide-detectron2-object-detection-segmentation). Built on top of the PyTorch framework, it provides a powerful set of tools and algorithms for various computer vision tasks[_{{{CITATION{{{_2{Detectron2: Ultimate Guide to Object Detection & Segmentation](https://datascientistassoc.org/detectron2/).
+
+## Getting Started with Detectron 2
+To get started with Detectron 2, you'll need to install the necessary dependencies and set up your environment[_{{{CITATION{{{_3{Detectron2 Object Detection Model : A Guide - Analytics Vidhya](https://www.analyticsvidhya.com/blog/2021/08/your-guide-to-object-detection-with-detectron2-in-pytorch/).
+
+### Installation
+```bash
+# Install Detectron 2
+pip install detectron2
 
 
 ```python
@@ -17,7 +29,7 @@ predictor = DefaultPredictor(model)
 
 ```
 
-```
+```python
 from PIL import Image
 import numpy as np
 
