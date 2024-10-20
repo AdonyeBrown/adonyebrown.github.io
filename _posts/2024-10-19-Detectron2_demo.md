@@ -100,5 +100,21 @@ trainer.train()
 ```
 
 
+### Metrics for Judging the Model
+**Precision and Recall**
+- Precision: Measures the accuracy of the positive predictions.
 
+- Recall: Measures the ability of the model to find all relevant instances.
+
+**Mean Average Precision (mAP)**
+- mAP: A common metric for evaluating object detection models, which combines precision and recall across different thresholds.
+
+**Intersection over Union (IoU)**
+- IoU: Measures the overlap between the predicted bounding box and the ground truth bounding box.
+
+**F1 Score**
+- F1 Score: The harmonic mean of precision and recall, providing a balanced measure of the model's performance.
+
+**Conclusion**
+Detectron 2 is a powerful tool for object detection and segmentation, providing a robust framework for various computer vision tasks. By understanding and utilizing the appropriate metrics, you can effectively evaluate and improve your model's performance.
 
