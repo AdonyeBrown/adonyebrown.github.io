@@ -32,3 +32,4 @@ First, you'll need to install Detectron 2 and its dependencies
 
 ```bash
 pip install detectron2
+```
