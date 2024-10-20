@@ -1,3 +1,10 @@
+---
+layout: post
+title: Computer Vision
+subtitle: Obect Detection
+category: [Important Features, architecture]
+tags: [python, Detectron2_demo, MLlib]
+---
 
 # Detectron 2 for Object Detection
 
