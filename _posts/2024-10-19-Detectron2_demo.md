@@ -24,3 +24,11 @@ Object detection models like YOLO (You Only Look Once), Faster R-CNN, and SSD (S
 
 Detectron 2, developed by Facebook AI Research (FAIR), is an open-source library built on the PyTorch framework. It provides a comprehensive set of tools and algorithms for various computer vision tasks, making it a versatile choice for developers and researchers alike.
 
+
+
+## Getting Started with Detectron 2
+### Installation
+First, you'll need to install Detectron 2 and its dependencies
+
+```bash
+pip install detectron2
