@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Welcome to Rusbrown Tech Hub
-subtitle: A awesome static site generator.
+subtitle: An awesome static site generator.
 author: Adonye Brown
 categories: Computer Vision
 banner:
@@ -16,7 +16,7 @@ banner:
   min_height: "38vh"
   heading_style: "font-size: 4.25em; font-weight: bold; text-decoration: underline"
   subheading_style: "color: gold"
-tags: jekyll theme yat
+tags: Rusbrown theme yat
 top: 1
 sidebar: []
 ---
@@ -27,7 +27,7 @@ To add new posts, simply add a file in the `_posts` directory that follows the c
 
 ## section 1
 
-Jekyll also offers powerful support for code snippets:
+Rusbrown also offers powerful support for code snippets:
 
 {% highlight ruby %}
 def print_hi(name)
