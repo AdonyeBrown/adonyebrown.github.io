@@ -16,7 +16,7 @@ banner:
   min_height: "38vh"
   heading_style: "font-size: 4.25em; font-weight: bold; text-decoration: underline"
   subheading_style: "color: gold"
-tags: jekyll theme yat
+tags: russel theme yat
 top: 1
 sidebar: []
 ---
@@ -27,11 +27,11 @@ To add new posts, simply add a file in the `_posts` directory that follows the c
 
 ## section 1
 
-Jekyll also offers powerful support for code snippets:
+Rusbrown also offers powerful support for code snippets:
 
-{% highlight ruby %}
+{% highlight Python %}
 def print_hi(name)
-puts "Hi, #{name}"
+   return  f"Hi, {name}"
 end
 print_hi('Tom')
 #=> prints 'Hi, Tom' to STDOUT.
