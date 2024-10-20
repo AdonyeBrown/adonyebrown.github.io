@@ -5,3 +5,59 @@ subtitle: Obect Detection
 category: [Features, infrastructure]
 tags: [python, Detectron2_demo, MLlib]
 ---
+
+
+```python
+from detectron2 import model_zoo
+from detectron2.engine import DefaultPredictor
+
+# Load a pre-trained model
+model = model_zoo.get("COCO-Detection/faster_rcnn_R_50_FPN_3x.yaml", trained=True)
+predictor = DefaultPredictor(model)
+
+```
+
+```
+from PIL import Image
+import numpy as np
+
+# Load an image
+image = Image.open("path/to/image.jpg")
+image = np.array(image)
+
+# Run inference
+predictions = predictor(image)
+print(predictions)
+```
+
+
+```
+from detectron2.utils.logger import setup_logger
+from detectron2.engine import DefaultTrainer
+from detectron2.config import get_cfg
+
+# Set up logger
+setup_logger()
+
+# Set up configuration
+cfg = get_cfg()
+cfg.merge_from_file(model_zoo.get("COCO-Detection/faster_rcnn_R_50_FPN_3x.yaml"))
+cfg.MODEL.WEIGHTS = "path/to/weights.pth"
+
+# Set up TensorBoard
+from detectron2.utils.events import CommonMetricPrinter, JSONWriter, TensorboardXWriter
+cfg.DATALOADER.NUM_WORKERS = 4
+cfg.SOLVER.IMS_PER_BATCH = 2
+cfg.SOLVER.BASE_LR = 0.001
+cfg.SOLVER.MAX_ITER = 30000
+cfg.SOLVER.STEPS = (20000, 25000)
+cfg.SOLVER.WARMUP_ITERS = 1000
+cfg.SOLVER.CHECKPOINT_PERIOD = 1000
+cfg.TEST.EVAL_PERIOD = 1000
+cfg.OUTPUT_DIR = "path/to/output"
+cfg.TENSORBOARD = True
+cfg.TENSORBOARD.LOG_DIR = "path/to/tensorboard"
+
+# Start training
+trainer = DefaultTrainer(cfg)
+```
