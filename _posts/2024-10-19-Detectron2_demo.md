@@ -33,3 +33,20 @@ First, you'll need to install Detectron 2 and its dependencies
 ```bash
 pip install detectron2
 ```
+### Load a Pre-trained Model
+
+Detectron 2 provides pre-trained models for various tasks, making it easy to get started. Here's how to load a pre-trained model:
+
+```
+from detectron2 import model_zoo
+from detectron2.engine import DefaultPredictor
+
+# Load a pre-trained model
+cfg = get_cfg()
+cfg.merge_from_file(model_zoo.get_config_file("COCO-Detection/faster_rcnn_R_50_FPN_3x.yaml"))
+cfg.MODEL.WEIGHTS = model_zoo.get_checkpoint_url("COCO-Detection/faster_rcnn_R_50_FPN_3x.yaml")
+predictor = DefaultPredictor(cfg)
+```
+
+
+
