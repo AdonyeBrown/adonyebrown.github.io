@@ -122,4 +122,4 @@ cv2_imshow(out.get_image()[:, :, ::-1])
 **Conclusion**
 Detectron 2 is a powerful tool for object detection and segmentation, providing a robust framework for various computer vision tasks. By understanding and utilizing the appropriate metrics, you can effectively evaluate and improve your model's performance.
 
-[https://github.com/AdonyeBrown/detectron2_demo](Click_Here)
+[Click here](https://github.com/AdonyeBrown/detectron2_demo)
