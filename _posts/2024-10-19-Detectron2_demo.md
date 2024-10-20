@@ -48,5 +48,57 @@ cfg.MODEL.WEIGHTS = model_zoo.get_checkpoint_url("COCO-Detection/faster_rcnn_R_5
 predictor = DefaultPredictor(cfg)
 ```
 
+### Running Inference
+Once the model is loaded, you can run inference on an image:
+
+```
+from PIL import Image
+import numpy as np
+
+# Load an image
+image = Image.open("path/to/image.jpg")
+image = np.array(image)
+
+# Run inference
+outputs = predictor(image)
+print(outputs)
+```
+
+### Visualizing Results with TensorBoard
+TensorBoard is a great tool for visualizing the training process and results of your model.
+
+### Setting Up TensorBoard
+
+```
+from detectron2.utils.logger import setup_logger
+from detectron2.engine import DefaultTrainer
+from detectron2.config import get_cfg
+
+# Set up logger
+setup_logger()
+
+# Set up configuration
+cfg = get_cfg()
+cfg.merge_from_file(model_zoo.get_config_file("COCO-Detection/faster_rcnn_R_50_FPN_3x.yaml"))
+cfg.MODEL.WEIGHTS = "path/to/weights.pth"
+
+# Set up TensorBoard
+cfg.DATALOADER.NUM_WORKERS = 4
+cfg.SOLVER.IMS_PER_BATCH = 2
+cfg.SOLVER.BASE_LR = 0.001
+cfg.SOLVER.MAX_ITER = 30000
+cfg.SOLVER.STEPS = (20000, 25000)
+cfg.SOLVER.WARMUP_ITERS = 1000
+cfg.SOLVER.CHECKPOINT_PERIOD = 1000
+cfg.TEST.EVAL_PERIOD = 1000
+cfg.OUTPUT_DIR = "path/to/output"
+
+# Start training
+trainer = DefaultTrainer(cfg)
+trainer.resume_or_load(resume=False)
+trainer.train()
+```
+
+
 
 
