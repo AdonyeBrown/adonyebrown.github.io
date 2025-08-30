@@ -99,8 +99,7 @@ Understanding how different complexities scale with input size:
 
 ### Visual Growth Representation
 
-
-![Alt picture not found]({{ site.baseurl }}/assets/images/algorithm_chart.png)
+![Algorithm Chart]({{ site.baseurl }}/assets/images/algorithm_chart.png)
 
 
 ### Performance Categories
