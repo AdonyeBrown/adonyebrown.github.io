@@ -1,319 +1,246 @@
----
-layout: post
-title: Another test markdown
-subtitle: Each post also has a subtitle
-categories: markdown
-tags: [test]
----
+<!-- Chosen Palette: Calm Harmony -->
 
-Put the math expression within <span>$</span>...\$:
+<!-- Application Structure Plan: The SPA is designed with a thematic, non-linear structure to maximize user exploration and understanding. It starts with a high-level definition, then presents the core challenges as interactive cards. This allows users to dive into topics they find most relevant first. Clicking a challenge reveals a dedicated view with an explanation, a visualization of the problem, and a corresponding mitigation strategy. This problem-solution format is reinforced with an interactive chart. A separate section compares key techniques (ETL vs. ELT) using animated diagrams. This structure was chosen over a linear report format to make learning self-directed and engaging, transforming passive reading into active exploration. -->
 
-\\(\LaTeX{}\\)
+<!-- Visualization & Content Choices:
+1. Core Concept Diagram: Report Info -> What is data integration? -> Goal: Organize/Inform -> Viz: Diagram of sources flowing to a unified view -> Interaction: None (static visual) -> Justification: A simple, clear visual introduction to the core concept. -> Method: HTML/CSS with Tailwind Flexbox.
+2. Challenges & Solutions: Report Info -> Challenges like silos, quality, security -> Goal: Inform/Compare (Problem vs. Solution) -> Viz: Interactive Cards & a Bar Chart -> Interaction: Clicking cards to switch content; clicking a button to update the chart to show 'mitigated' state. -> Justification: Cards allow focused learning. The dynamic chart provides a quantifiable visual of a solution's impact (e.g., improved data quality). -> Library: Chart.js for the bar chart, Vanilla JS for interaction.
+3. ETL vs. ELT Comparison: Report Info -> Different integration techniques -> Goal: Compare/Change (Process Flow) -> Viz: Animated process flow diagrams -> Interaction: Buttons trigger animations showing data movement. -> Justification: Animation makes the abstract process flow tangible and easier to differentiate than static text. -> Method: HTML/CSS/JS.
+All visualizations are designed to be clear, interactive, and avoid complex imagery, reinforcing the educational goal.
+-->
 
-$\Pi$
+<!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
 
-$ a * b = c ^ b $
+Understanding Data Integration
+Data integration is the process of combining data from various disparate sources to create a unified, consistent, and valuable view. The goal is to break down data silos and provide a single source of truth for analysis and business intelligence.
 
-$ 2^{\frac{n-1}{3}} $
+Common Challenges
+Here are some of the most common challenges in data integration and their mitigation strategies.
 
-$ \int\_a^b f(x)\,dx. $
+Data Silos
+Challenge: Data is often stored in isolated systems that don't communicate. For example, the sales CRM, marketing platform, and finance software all hold valuable data, but separately. This fragmentation makes it impossible to get a complete view of the business, leading to inefficiencies and missed opportunities.
 
-\\( \int\_a^b f(x)\,dx. \\)
+Mitigation: Implement a central data repository, like a data warehouse or data lake. These systems consolidate information from all sources, providing a single, unified location for analysis and reporting.
 
-$$
-\begin{cases}
-\text{if true}\ foo \\
-\text{if false}\ bar
-\end{cases}
-$$
+Data Quality Issues
+Challenge: When data comes from many sources, it often has errors, inconsistencies, or is incomplete. Common issues include duplicate records, incorrect formatting (e.g., "NY" vs. "New York"), missing values, and misspellings. Integrating low-quality data leads to inaccurate reports and flawed decision-making.
 
-$ \rho {\rm{FOD}} = \sum\limits{\sigma ,i} {(\delta _1 - \delta _2 n_i^\sigma )|\phi _i^\sigma ({\bf{r}})|^2} $
+Mitigation: Implement rigorous data cleansing processes and establish a data governance framework. This involves using tools to automatically clean, standardize, and validate data before it's integrated.
 
-$$ \rho {\rm{FOD}} = \sum\limits{\sigma ,i} {(\delta _1 - \delta _2 n_i^\sigma )|\phi _i^\sigma ({\bf{r}})|^2} $$
+Diverse Data Formats
+Challenge: Data exists in many formats: structured data in relational databases, semi-structured JSON files from APIs, and unstructured text documents. Reconciling these different structures can be a complex and error-prone process, requiring custom code for each source.
 
+Mitigation: Standardize data formats using ETL (Extract, Transform, Load) or ELT (Extract, Load, Transform) tools. These platforms are designed to handle data transformation.
 
-{{ "here is a liquid filter." | capitalize }}
+Scalability & Performance
+Challenge: As a business grows, so does the volume, velocity, and variety of its data. Traditional, on-premise integration methods can become slow and inefficient, unable to handle massive datasets or real-time data streams.
 
-{% capture test %}
-\`escape inline code\`  
-`inline code`  
-Here is a **capture block**.
-{% endcapture %}
+Mitigation: Adopt modern, cloud-based solutions. Cloud platforms offer elasticity and scalability, allowing you to easily increase resources as your data needs change.
 
-{{ test | markdownify }}
+Security & Privacy
+Challenge: Integrating data involves moving potentially sensitive information (customer PII, financial records) between systems. This creates security vulnerabilities. Without proper measures, data can be exposed to unauthorized access, breaches, or leaks.
 
-{% assign x = 100 %} {% assign x = x | divided_by: 3 %}
-100 / 3 = {{ x }}
+Mitigation: Implement a comprehensive security strategy that includes data encryption and strict access controls. Data should be encrypted both "in transit" (while moving between systems) and "at rest" (while stored).
 
-:+1:
-:bolivia:
+Integration Techniques
+A comparison of two common data integration patterns:
 
-\1. 21312  
-\2. 21312  
-\4. 4214  
+ETL: Extract, Transform, Load
+The traditional approach. Data is extracted from sources, transformed into a clean, structured format in a separate staging area, and then loaded into a data warehouse.
 
-{% highlight python wl linenos %}
-import networkx as nx
-from collections import Counter
+ELT: Extract, Load, Transform
+A modern approach suited for the cloud. Raw data is extracted and loaded directly into a data lake or powerful data warehouse. The transformation happens inside the warehouse, leveraging its processing power.
 
-diagrams = defaultdict(list)
-particle_counts = defaultdict(Counter)
+Source Code
+This section contains the source code for the interactive elements and styling.
 
-for (a, b), neighbors in common_neighbors.items():
-    # Build up the graph of connections between the
-    # common neighbors of a and b.
-    g = nx.Graph()
-    for i in neighbors:
-        for j in set(nl.point_indices[
-            nl.query_point_indices == i]).intersection(neighbors):
-            g.add_edge(i, j)
-
-    # Define the identifiers for a CNA diagram:
-    # The first integer is 1 if the particles are bonded, otherwise 2
-    # The second integer is the number of shared neighbors
-    # The third integer is the number of bonds among shared neighbors
-    # The fourth integer is an index, just to ensure uniqueness of diagrams
-    diagram_type = 2-int(b in nl.point_indices[nl.query_point_indices == a])
-    key = (diagram_type, len(neighbors), g.number_of_edges())
-    # If we've seen any neighborhood graphs with this signature,
-    # we explicitly check if the two graphs are identical to
-    # determine whether to save this one. Otherwise, we add
-    # the new graph immediately.
-    if key in diagrams:
-        isomorphs = [nx.is_isomorphic(g, h) for h in diagrams[key]]
-        if any(isomorphs):
-            idx = isomorphs.index(True)
-        else:
-            diagrams[key].append(g)
-            idx = diagrams[key].index(g)
-    else:
-        diagrams[key].append(g)
-        idx = diagrams[key].index(g)
-    cna_signature = key + (idx,)
-    particle_counts[a].update([cna_signature])
-{% endhighlight %}
-
-```cpp
-void insert(const char* key) {
-    if (*key == '\0') {
-        finish = true;
-    } else {
-        int idx = *key - 'A';
-        if (!next[idx])
-            next[idx] = new Trie();
-        next[idx]->insert(key + 1);
+CSS
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #F8F7F4;
+    color: #4A4A4A;
+}
+.active-nav {
+    background-color: #EBEAE6;
+    color: #333;
+    font-weight: 500;
+}
+.nav-item {
+    transition: all 0.2s ease-in-out;
+}
+.content-section {
+    display: none;
+}
+.content-section.active {
+    display: block;
+    animation: fadeIn 0.5s ease-in-out;
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.chart-container {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 300px;
+    max-height: 400px;
+}
+@media (min-width: 768px) {
+    .chart-container {
+        height: 350px;
     }
 }
-```
-
-```ruby
-p ":+1:"
-```
-
-``` diff
-+        'user_exists' => 'SELECT EXISTS(SELECT 1 FROM table WHERE username = (:username || \'@sample'))',
-+        'get_users' => 'SELECT split_part(username, \'@\', 1) FROM table WHERE (username ILIKE :search) OR (name ILIKE :search)',
-+        'get_password_hash_for_user' => 'SELECT split_part(password, \'{CRYPT}\', 2) FROM table WHERE username = (:username || \'@sample\')',
-+        'set_password_hash_for_user' => 'UPDATE table SET password =  \'{CRYPT}\' || :new_password_hash WHERE username = (:username || \'@sample\')',
-```
-
-Reload the Nginx:
-
-``` console
-$ sudo nginx -s reload
-```
-
-|:                        |:                  :|: $$O_3 + C_2H_2 \rightarrow $$         :|||:  $$O_3 + C_2H_4 \rightarrow $$ :|||:       :| 
-|:  ^^ Method            :| ^^ $$\lambda^a$$  |    vdW |    TS |    cycloadd.           |  vdW  |  TS  |  cycloadd.           | ^^ MAE    |
-|-------------------------|-------------------|--------|-------|------------------------|-------|------|----------------------|-----------|
-| $$\lambda$$-tPBE        |   0.20            | -0.40  | 7.69  | -68.00                 | -1.86 | 4.87 | -57.57               | 1.29      |
-|-------------------------|-------------------|--------|-------|------------------------|-------|------|----------------------|-----------|
-| MC1H-PBE $$^b$$         |   0.25            | -1.08  | 3.66  | -70.97                 | -1.25 | 0.13 | -61.26               | 3.35      |
-|-------------------------|-------------------|--------|-------|------------------------|-------|------|----------------------|-----------|
-| Reference values $$^c$$ |   ---------       | -1.90  | 7.74  | -63.80                 | -1.94 | 3.37 | -57.15               | --------- |
-|=========================|===================|========|=======|========================|=======|======|======================|===========|
-| $$^a$$ The optimal mixing parameter.$$\~$$ $$^b$$ From Ref. .$$\~$$  $$^c$$ Best estimates from Ref. . ||||||||
-
-
-|   1   |  2     |   3   |   4   |  5   |  6   |  7  |
-| spancell1     ||   spancell2  || cell | spancell3 ||
-|^^ spancell1   ||   spancell2  || cell | spancell3 ||
-{:class="custom-table"}
-
-<script>
-|:-----:|:-----:|:-----:|:-----:|
-| (0,0) | (0,1) | (0,2) | (0,3) |
-|     (1,0)    || ^^    | (1,3) |
-</script>
-
-
-|:-----:|:-----:|:-----:|:-----:| ---- |
-| (0,0) | (0,1) | (0,2) | (0,3) |      |
-|     (1,0)    || ^^    | (1,3) |      |
-
-
-|:-----:|:-----:|:-----:|:-----:| ---- |
-| (0,0) | (0,1) | (0,2) | (0,3) |      |
-|     (1,0)           ||| (1,3)       ||
-
-
-|:-----:|:-----:|:-----:|:-----:| ---- |
-| (0,0) | (0,1) | (0,2) | (0,3) |      |
-|     (1,0)           ||| ^^    |      |
-
-|:-----:|:-----:|:-----:|:-----:| ---- |
-| (0,0) | (0,1) | (0,2) | (0,3) |      \
-|     (1,0)           ||| ^^    |      |
-
-
-## Table
-
-| Stage | Direct Products | ATP Yields |
-| ----: | --------------: | ---------: |
-|Glycolysis | 2 ATP                   ||
-|^^         | 2 NADH      | 3--5 ATP   |
-|Pyruvaye oxidation | 2 NADH | 5 ATP   |
-|Citric acid cycle  | 2 ATP           ||
-|^^                 | 6 NADH | 15 ATP  |
-|^^                 | 2 FADH | 3 ATP   |
-|                        30--32 ATP  |||
-
-
-{:color-style: style="background: black;" }
-{:color-style: style="color: white;" }
-{:font-style: style="font-weight: 900; text-decoration: underline;" }
-
-|:             Here's a Inline Attribute Lists example                 :||||
-| ------- | ------------------------- | -------------------- | ----------- |
-|:       :|:  <div style="color: red;"> &lt; Normal HTML Block > </div> :|||
-| ^^      |   Red    {: .cls style="background: orange" }                |||
-| ^^ IALs |   Green  {: #id style="background: green; color: white" }    |||
-| ^^      |   Blue   {: style="background: blue; color: white" }         |||
-| ^^      |   Black  {: color-style font-style}                          |||
-
-
-[cell image]: https://jekyllrb.com/img/octojekyll.png "An exemplary image"
-
-| Heading            | Column 1      | Column 2                           |
-|--------------------|---------------|------------------------------------|
-| Row 1              | Apple[^1]     | [Youtube (Home)]                   |
-| Row 2              | Banana        | [Github][1]                        |
-| Row 3 (merged)     | Blueberry     | [Google] *****  [Github]           |
-| ^^         | [Plum](https://example.com) | Raspberry ![example][cell image]   |
-| Row 4      | <https://www.google.com>    |  [test](https://www.google.com){:target="_blank"}                            |
-|^^          |^^ <https://www.youtube.com> |                              |
-| Row 5      | <https://www.google.com>                                  ||
-
-[Youtube (Home)]: https://www.youtube.com
-[Google]: https://www.google.com
-[Github]: https://www.github.com
-[1]: https://www.github.com
-[^1]: Footnote
-
-<https://www.google.com>
-
-Not in table: `<Mail Gateway>`
-
-In table:
-
-Decision Point | Design Decision
---- | ---
-Authoritative DNS MX Record | `<Mail Gateway>`
-
-9 \* 9
-
-| 1 \* 1 = 1 |
-| 1 \* 2 = 2 | 2 \* 2 = 4 |
-| 1 \* 3 = 3 | 2 \* 3 = 6 | 3 \* 3 = 9  |
-| 1 \* 3 = 3 | 2 \* 3 = 6 | 3 \* 4 = 12 | 4 \* 4 = 16 |
-
-## Emoji
-:+1:
-
-## Mathjax
-
-$\LaTeX{}$
-
-## PlantUML
-
-@startuml
-Bob -> Alice : hello
-@enduml
-
-## Mermaid
-
-```mermaid!
-graph LR
-  concurrent.futures --->| on top of | threading
-  concurrent.futures --->| on top of | multiprocessing
-  threading --->| on top of | \_thread
-  click concurrent.futures "https://docs.python.org/3.9/library/concurrent.futures.html" _blank
-```
-
-## Video
-
-![Flower](https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm)
-
-![](//www.youtube.com/watch?v=Ptk_1Dc2iPY)
-
-![](https://avatars3.githubusercontent.com/hubot?v=3&amp;s=40)
-
-[\[video link\]](//www.youtube.com/watch?v=Ptk_1Dc2iPY)
-
-## Audio
-
-[HTML5 Audio Formats Test](https://hpr.dogphilosophy.net/test/)
-
-Opus Audio (".opus"):
-
-![](https://hpr.dogphilosophy.net/test/opus.opus)
-
-"MP3" file (".mp3") :
-
-![](https://hpr.dogphilosophy.net/test/mp3.mp3)
-
-WebM Audio (".weba"):
-
-![](https://hpr.dogphilosophy.net/test/weba.weba)
-
-WebMv2 Audio (".webm"):
-
-![](https://hpr.dogphilosophy.net/test/webmv2.webm)
-
-Ogg Vorbis (".ogg") :
-
-![](https://hpr.dogphilosophy.net/test/ogg.ogg)
-
-"wave" file(".wav") :
-
-![](https://hpr.dogphilosophy.net/test/wav.wav)
-
-FLAC file (".flac") :
-
-![](https://hpr.dogphilosophy.net/test/flac.flac)
-
-CAF file (".caf") :
-
-![](https://hpr.dogphilosophy.net/test/cafopus.caf)
-
-Spotify Podcast:
-
-![](https://open.spotify.com/episode/2sXXGexCXPhGsdf9l99Q73?si=717c6671590745b3)
-
-## Special media links
-
-Local video file (".webm"):
-
-![]({{ "/assets/videos/devstories.webm" | relative_url }})
-
-Video with custom thumbnail:
-
-[![w:1100](https://i.imgur.com/bc9HOJU.png)](https://www.youtube.com/watch?v=kCHGDRHZ4eU)
-
-Tips:
-* Use pipes {% raw %}(`|`){% endraw %} to delineate columns, and dashes to delineate the header row from the rest of the table.
-* Spacing doesn't matter to the markdown processor, any extra white space is removed, but it can really help with readability.
-The two markdown examples below both create this table.
-
-Use pipes `{% raw %}(`|`){% endraw %}` to delineate columns, and dashes to delineate the header row from the rest of the table.
-
+.etl-data-point {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: #4A90E2;
+    border-radius: 50%;
+    transition: all 2s ease-in-out;
+}
+
+JavaScript
+document.addEventListener('DOMContentLoaded', function () {
+    const navButtons = document.querySelectorAll('#challenge-nav button');
+    const contentSections = document.querySelectorAll('.content-section');
+    let qualityChart = null;
+
+    const initialQualityData = {
+        labels: ['Completeness', 'Accuracy', 'Consistency', 'Timeliness'],
+        datasets: [{
+            label: 'Data Quality Score (Before)',
+            data: [65, 55, 70, 60],
+            backgroundColor: 'rgba(239, 68, 68, 0.6)',
+            borderColor: 'rgba(239, 68, 68, 1)',
+            borderWidth: 1
+        }]
+    };
+
+    const mitigatedQualityData = {
+        datasets: [{
+            label: 'Data Quality Score (After)',
+            data: [95, 92, 98, 90],
+            backgroundColor: 'rgba(59, 130, 246, 0.6)',
+            borderColor: 'rgba(59, 130, 246, 1)',
+            borderWidth: 1
+        }]
+    };
+
+    function createQualityChart() {
+        const ctx = document.getElementById('qualityChart').getContext('2d');
+        if (qualityChart) {
+            qualityChart.destroy();
+        }
+        qualityChart = new Chart(ctx, {
+            type: 'bar',
+            data: JSON.parse(JSON.stringify(initialQualityData)),
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        title: {
+                            display: true,
+                            text: 'Quality Score (%)'
+                        }
+                    }
+                },
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Impact of Data Governance on Quality'
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return `${context.dataset.label}: ${context.raw}%`;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    function showSection(targetId) {
+        contentSections.forEach(section => {
+            if (section.id === targetId) {
+                section.classList.add('active');
+                if (targetId === 'quality') {
+                    setTimeout(createQualityChart, 50);
+                }
+            } else {
+                section.classList.remove('active');
+            }
+        });
+    }
+    
+    navButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            navButtons.forEach(btn => btn.classList.remove('active-nav'));
+            button.classList.add('active-nav');
+            const targetId = button.getAttribute('data-target');
+            showSection(targetId);
+        });
+    });
+
+    document.getElementById('mitigateQualityBtn').addEventListener('click', () => {
+        if (qualityChart) {
+            qualityChart.data.datasets.push(mitigatedQualityData.datasets[0]);
+            qualityChart.update();
+            document.getElementById('mitigateQualityBtn').disabled = true;
+            document.getElementById('mitigateQualityBtn').textContent = 'Mitigation Applied';
+            document.getElementById('mitigateQualityBtn').classList.add('opacity-50', 'cursor-not-allowed');
+        }
+    });
+
+    function animateFlow(containerId, isEtl) {
+        const container = document.getElementById(containerId);
+        if (!container) return;
+        
+        let existingPoints = container.querySelectorAll('.etl-data-point');
+        existingPoints.forEach(p => p.remove());
+
+        for (let i = 0; i < 3; i++) {
+            const point = document.createElement('div');
+            point.className = 'etl-data-point';
+            container.appendChild(point);
+
+            const startX = 20;
+            const startY = (container.clientHeight / 2) + (i - 1) * 25 - 10;
+            
+            point.style.left = `${startX}px`;
+            point.style.top = `${startY}px`;
+
+            setTimeout(() => {
+                if (isEtl) {
+                    point.style.left = `${container.clientWidth / 2 - 10}px`;
+                    point.style.top = `${container.clientHeight / 2 - 10}px`;
+                    point.style.backgroundColor = '#FBBF24'; 
+                } else {
+                    point.style.left = `${container.clientWidth - 40}px`;
+                }
+            }, 100);
+
+            if (isEtl) {
+                setTimeout(() => {
+                    point.style.left = `${container.clientWidth - 40}px`;
+                    point.style.top = `${startY}px`;
+                }, 2100);
+            } else {
+                setTimeout(() => {
+                    point.style.backgroundColor = '#34D399'; 
+                }, 2100);
+            }
+        }
+    }
+
+    document.getElementById('runEtl').addEventListener('click', () => animateFlow('etl-diagram', true));
+    document.getElementById('runElt').addEventListener('click', () => animateFlow('elt-diagram', false));
+
+});
