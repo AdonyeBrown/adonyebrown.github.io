@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Welcome to Rusbrown Tech Hub
+title: Welcome to Adonye brown's Tech Hub
 subtitle: An awesome static site generator.
 author: Adonye Brown
 categories: Computer Vision
