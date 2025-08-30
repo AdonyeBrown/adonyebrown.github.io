@@ -100,21 +100,7 @@ Understanding how different complexities scale with input size:
 ### Visual Growth Representation
 
 ```
-Operations
-    ↑
-    │     O(2ⁿ)
-    │      /
-    │     /
-    │    / O(n²)
-    │   /   /
-    │  /   /
-    │ /   / O(n log n)
-    │/   /  O(n)
-    │   /  /
-    │  /  / O(log n)
-    │ /  /
-    │/  / O(1)
-    │__/__________________→ Input Size (n)
+![Alt picture not found]({{ site.baseurl }}/assets/images/algorithm_chart.png)
 ```
 
 ### Performance Categories
