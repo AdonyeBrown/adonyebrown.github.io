@@ -1,9 +1,5 @@
 # Understanding Data Integration
-<div align="center">
-
- **What is Data Integration?**
-
-</div>
+# **<div align="center"> What is data integration?</div>**
 
 Data integration is the process of combining data from various disparate sources to create a unified, consistent, and valuable view. The goal is to break down data silos and provide a single source of truth for analysis and business intelligence.
 
