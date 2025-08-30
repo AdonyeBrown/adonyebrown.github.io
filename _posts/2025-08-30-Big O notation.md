@@ -99,7 +99,7 @@ Understanding how different complexities scale with input size:
 
 ### Visual Growth Representation
 
-![](https://github.com/AdonyeBrown/adonyebrown.github.io/blob/master/assets/images/algorithm_chart.png)
+![Growth Rate](https://github.com/AdonyeBrown/adonyebrown.github.io/blob/master/assets/images/algorithm_chart.png)
 
 
 ### Performance Categories
